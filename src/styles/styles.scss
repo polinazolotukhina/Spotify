@@ -2,7 +2,13 @@
 body {
 }
 img{
-  width: 100%;
+    border-radius: 50px;
+  width: 70px;
+  height: 70px;
+}
+h2{
+    font-weight: 200;
+    margin: 50px 0;
 }
 /**
  * The geosuggest module

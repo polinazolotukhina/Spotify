@@ -11,11 +11,10 @@ export default class ListArtist extends Component {
 
               {
                 searchRes.data.playlists && searchRes.data.playlists.items.map((item, index) =>
-                    <div className="col-md-4" key={index}>
+                    <div className="col-md-4 text-center" key={index}>
                         <p> name: {item.name}</p>
-                        <p>popularity: {item.popularity}</p>
                         <a href={item.external_urls.spotify}>listen</a>
-                        {item.images[0].url&&<img src = {item.images[0].url}/>}
+                        {item.images[0].url&&<a href={item.external_urls.spotify}><img src = {item.images[0].url}/></a>}
                     </div>
                 )
               }

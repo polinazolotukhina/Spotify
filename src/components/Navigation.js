@@ -17,9 +17,6 @@ const Navigation = () => {
                 </div>
                 <div id="navbar" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
-                        <li>
-                            <Link to="/search">Search</Link>
-                        </li>
                     </ul>
                </div>
             </div>

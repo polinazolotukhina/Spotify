@@ -6,14 +6,14 @@ export default class ListTrack extends Component {
 
   render() {
       const { searchTrack } = this.props;
-
+ // console.log("let me see...",searchTrack.data.tracks.items )
 
 
     return (
       <div className="row">
       {
         searchTrack.data.tracks && searchTrack.data.tracks.items.map((item, index) =>
-            <div key={index} className = "col-md-2">
+            <div key={index} className = "col-md-2 text-center">
 
             {item.disc_number}
             {
@@ -21,8 +21,6 @@ export default class ListTrack extends Component {
                 <div key={index}>
                     <p>{art.name}</p>
                     <a href={art.external_urls.spotify}> listen</a>
-                    <p> here: {art.preview_url}</p>
-                    {(art.preview_url!=null)?(<a href={art.preview_url}>Preview</a>):(<div></div>)}
                 </div>
                 )
             }
