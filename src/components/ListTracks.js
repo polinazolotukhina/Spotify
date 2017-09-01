@@ -13,7 +13,7 @@ export default class ListTrack extends Component {
       <div className="row">
       {
         searchTrack.data.tracks && searchTrack.data.tracks.items.map((item, index) =>
-            <div key={index} className = "col-md-2 text-center">
+            <div key={index} className = "col-md-2 singleItem">
 
             {item.disc_number}
             {

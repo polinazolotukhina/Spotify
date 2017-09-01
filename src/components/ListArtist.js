@@ -10,8 +10,8 @@ export default class ListArtist extends Component {
       <div className="row">
       {
         searchRes.data.artists && searchRes.data.artists.items.map((item, index) =>
-            <div className="col-md-4 text-center" key={index}>
-                <p> name: {item.name}</p>
+            <div className="col-md-4  singleItem" key={index}>
+                <p> {item.name}</p>
                 <p>popularity: {item.popularity}</p>
                 <p>followers:{item.followers.total}</p>
 

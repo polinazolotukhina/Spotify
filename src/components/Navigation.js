@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
+
 // Since this component is simple and static, there's no parent container for it.
 const Navigation = () => {
     return (
@@ -17,6 +18,12 @@ const Navigation = () => {
                 </div>
                 <div id="navbar" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
+                        <li>
+                            <Link to="/search">Search</Link>
+                        </li>
+                        <li>
+                            <Link to="/new-release">New Releases</Link>
+                        </li>
                     </ul>
                </div>
             </div>

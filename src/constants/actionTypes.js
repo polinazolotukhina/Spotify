@@ -4,3 +4,4 @@
 export const SPOTIFY_REQUEST = 'SPOTIFY_REQUEST';
 export const SPOTIFY_SUCCESS = 'SPOTIFY_SUCCESS';
 export const SPOTIFY_FAILURE = 'SPOTIFY_FAILURE';
+export const GET_TOKEN = 'GET_TOKEN';

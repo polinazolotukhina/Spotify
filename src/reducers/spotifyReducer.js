@@ -2,6 +2,7 @@ import {
     SPOTIFY_REQUEST,
     SPOTIFY_SUCCESS,
     SPOTIFY_FAILURE,
+    GET_TOKEN
 } from '../constants/actionTypes';
 import initialState from './initialState';
 
@@ -32,6 +33,11 @@ export default function spotifyReducer(state = initialState.spotify, action) {
               ...state,
               isLoading: false,
               error: action.data
+            };
+        case GET_TOKEN:
+            return {
+              ...state,
+              token: action.token
             };
 
         default:

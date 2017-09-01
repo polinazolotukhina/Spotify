@@ -10,6 +10,10 @@ h2{
     font-weight: 200;
     margin: 50px 0;
 }
+.singleItem{
+    text-align: center;
+    min-height: 250px;
+}
 /**
  * The geosuggest module
  * NOTE: duplicated font-sizes' are for browsers which don't support rem (only IE 8)

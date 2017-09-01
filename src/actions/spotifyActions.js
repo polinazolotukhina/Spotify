@@ -1,9 +1,6 @@
 import * as types from '../constants/actionTypes';
 const queryString = require('query-string');
 
-
-
-
 function spotifyRequest() {
     return {
         type: types.SPOTIFY_REQUEST,
@@ -28,16 +25,34 @@ function spotifyFailure(json) {
         error: json
     };
 }
-const parsed = queryString.parse(location.hash);
 
-export function searchSpotify(query, type) {
+
+
+
+// ------------------TOKEN------------------
+function saveIt(tokenToSave) {
+    return {
+        type: types.GET_TOKEN,
+        token: tokenToSave
+    };
+}
+
+export function passToken(token) {
+  return (dispatch) => {
+    dispatch(saveIt(token));
+  };
+}
+
+// ------------------------------------
+
+export function searchSpotify(partUrl, token, query="", type="") {
 
     const headers = {
         "Accept": "application/json",
-        "Authorization": "Bearer " + parsed.access_token
+        "Authorization": "Bearer " + token
     }
 
-    const url = `https://api.spotify.com/v1/search?q=${query}&type=${type}`;
+    const url = `https://api.spotify.com/v1/${partUrl}${query}${type}`;
 
     return (dispatch) => {
         dispatch(spotifyRequest());
