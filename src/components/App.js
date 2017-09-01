@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Navigation from './Navigation';
+import Navigation from '../containers/Navigation';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless

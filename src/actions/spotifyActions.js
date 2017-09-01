@@ -43,7 +43,35 @@ export function passToken(token) {
   };
 }
 
+
+// ------------------PROFILE IMG------------------
+function saveImg(ImgToSave) {
+    return {
+        type: types.GET_PROFILE_IMG,
+        profileImg: ImgToSave
+    };
+}
+
+export function saveImgProfile(profileImg) {
+  return (dispatch) => {
+    dispatch(saveImg(profileImg));
+  };
+}
+
+
+// ------------------CLEAR SEARCH------------------
+export function clearSearch() {
+    return {
+        type: types.CLEAR_SEARCH,
+        data: []
+    };
+}
+
+
+
 // ------------------------------------
+
+
 
 export function searchSpotify(partUrl, token, query="", type="") {
 

@@ -8,6 +8,7 @@ import ListArtist from '../components/ListArtist';
 import ListTrack from '../components/ListTracks';
 import ListAlbum from '../components/ListAlbum';
 import ListPlaylist from '../components/ListPlaylist';
+
 const queryString = require('query-string');
 
 
@@ -18,10 +19,10 @@ class Search extends React.Component {
         this.state = {userInput:'', keyWord:'artist'}
         this.handleType= this.handleType.bind(this);
         this.handleKeyWord= this.handleKeyWord.bind(this);
-        props.actions.searchSpotify('search?q=',props.spotify.token, this.state.userInput, "&type="+this.state.keyWord);
+        props.actions.clearSearch();
+        // props.actions.searchSpotify('search?q=',props.spotify.token, this.state.userInput, "&type="+this.state.keyWord);
         const parsed = queryString.parse(location.hash);
         if ( parsed.access_token) {
-            console.log('parsed exist', parsed);
             props.actions.passToken(parsed.access_token);
         }
 
@@ -61,6 +62,7 @@ class Search extends React.Component {
             <ListTrack searchTrack = {spotify}/>
             <ListAlbum searchRes = {spotify}/>
             <ListPlaylist searchRes = {spotify}/>
+
         </div>
 
 

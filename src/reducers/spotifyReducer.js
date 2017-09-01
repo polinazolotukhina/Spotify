@@ -2,7 +2,9 @@ import {
     SPOTIFY_REQUEST,
     SPOTIFY_SUCCESS,
     SPOTIFY_FAILURE,
-    GET_TOKEN
+    GET_TOKEN,
+    GET_PROFILE_IMG,
+    CLEAR_SEARCH
 } from '../constants/actionTypes';
 import initialState from './initialState';
 
@@ -38,6 +40,16 @@ export default function spotifyReducer(state = initialState.spotify, action) {
             return {
               ...state,
               token: action.token
+            };
+        case GET_PROFILE_IMG:
+            return {
+              ...state,
+              profileImg: action.profileImg
+            };
+        case CLEAR_SEARCH:
+            return {
+              ...state,
+              data: action.data
             };
 
         default:
