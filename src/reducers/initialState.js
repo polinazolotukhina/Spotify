@@ -1,12 +1,10 @@
 export default {
-
+    user: {},
     spotify: {
         token: '',
-        profileImg: '',
-        data: [],
+        data: {},
         isLoading: false,
         error: false
     },
     search:{}
-
 };

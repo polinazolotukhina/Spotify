@@ -4,14 +4,21 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../actions/spotifyActions';
 import { Link, IndexLink } from 'react-router';
+const queryString = require('query-string');
 
 
 class Navigation extends React.Component{
     constructor(props){
         super(props);
     }
+    componentWillMount(){
+        const parsed = queryString.parse(location.hash);
+        if ( parsed.access_token>2) {
+            this.props.actions.passToken(parsed.access_token);
+        }
+    }
     render() {
-        const { actions, spotify } = this.props;
+        const { actions, spotify, user } = this.props;
         return (
             <nav className="navbar navbar-default navbar-static-top">
                 <div className="container-fluid">
@@ -22,7 +29,7 @@ class Navigation extends React.Component{
                             <span className="icon-bar" />
                             <span className="icon-bar" />
                         </button>
-                        <IndexLink to="/" className="navbar-brand"><img src = {spotify.profileImg}/></IndexLink>
+                        <IndexLink to="/" className="navbar-brand"><img src = {user.user&&user.user.images&&user.user.images[0].url}/></IndexLink>
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
@@ -32,6 +39,11 @@ class Navigation extends React.Component{
                             <li>
                                 <Link to="/new-release">New Releases</Link>
                             </li>
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+
+
                         </ul>
                    </div>
                 </div>
@@ -43,16 +55,15 @@ class Navigation extends React.Component{
 Navigation.propTypes = {
    actions: PropTypes.object.isRequired,
    spotify: PropTypes.object.isRequired,
-
+   user: PropTypes.object.isRequired
 };
 
 
 function mapStateToProps(state) {
-   const { isLoading, error, spotify } = state;
+   const { user, spotify } = state;
    return {
-       isLoading,
-       error,
-       spotify
+       spotify,
+       user
    };
 }
 

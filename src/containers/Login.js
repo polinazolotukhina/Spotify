@@ -5,24 +5,34 @@ import { bindActionCreators} from 'redux';
 import * as actions from '../actions/spotifyActions';
 import { Link } from 'react-router';
 import { Button  } from 'react-bootstrap';
+const queryString = require('query-string');
 
 
-class HomePage extends React.Component{
+class Login extends React.Component{
     constructor(props){
         super(props);
-        this.authorize= this.authorize.bind(this);
-
-
-
+        this.login= this.login.bind(this);
     }
+    componentWillMount(){
+        const parsed = queryString.parse(location.hash);
+        if ( parsed.access_token) {
+            this.props.actions.passToken(parsed.access_token);
+            // this.props.actions.searchSpotify("me", parsed.access_token);
 
-    authorize(){
-        window.location='https://accounts.spotify.com/authorize?client_id=5714be2b46d94626b3eb39ec4ad04556&redirect_uri=http:%2F%2Flocalhost:3000%2Flogin&scope=user-read-private%20user-read-email&response_type=token&state=123';
+
+        }
+    }
+    login(){
+        this.props.actions.searchSpotify("me", this.props.spotify.token);
+        this.props.actions.fetchProfile(this.props.spotify.data);
+
     }
 
     render() {
         const { actions, spotify, user } = this.props;
-        console.log("spotify", spotify )
+        console.log("spotify", spotify,)
+        console.log("user", user)
+
         return (
                     <div className="info">
                         <div className = "container">
@@ -32,13 +42,19 @@ class HomePage extends React.Component{
                                         (spotify.token.length > 2 ) ?
                                         (
                                             <div>
-                                                <h2> Hi, </h2>
-                                                id:
-                                                <img src = ""/>
+                                            <Button bsStyle="info" bsSize="large" onClick={this.login}>Login</Button>
+
+                                                <h2> Hi,{user.user&&user.user.display_name} </h2>
+
+
+
+
                                             </div>
                                         ):(
                                             <div>
-                                                <h2> Welcome:) Please Authorize To Continue</h2>
+                                                <h2> LOGIN!!!</h2>
+
+
                                                 <Button bsStyle="info" bsSize="large" onClick={this.authorize}>Authorize</Button>
                                             </div>
                                         )
@@ -52,7 +68,7 @@ class HomePage extends React.Component{
     }
 };
 
-HomePage.propTypes = {
+Login.propTypes = {
    actions: PropTypes.object.isRequired,
    spotify: PropTypes.object.isRequired,
    user: PropTypes.object
@@ -76,4 +92,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(HomePage);
+)(Login);

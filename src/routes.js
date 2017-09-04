@@ -5,6 +5,7 @@ import App from './components/App';
 import HomePage from './containers/HomePage';
 import Search from './containers/Search';
 import NewRelease from './containers/NewRelease';
+import Login from './containers/Login';
 import AboutPage from './components/AboutPage';
 import NotFoundPage from './components/NotFoundPage';
 
@@ -13,6 +14,7 @@ export default (
         <IndexRoute component={HomePage}/>
         <Route path="search" component={Search}/>
         <Route path="new-release" component={NewRelease}/>
+        <Route path="login" component={Login}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );

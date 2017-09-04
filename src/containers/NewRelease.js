@@ -13,9 +13,12 @@ import ListRelease from '../components/ListRelease'
 class NewRelease extends React.Component {
     constructor(props){
         super(props);
-        props.actions.searchSpotify("browse/new-releases", this.props.spotify.token);
+
     }
 
+componentWillMount(){
+    this.props.actions.searchSpotify("browse/new-releases", this.props.spotify.token);
+}
 
 
     render() {

@@ -26,52 +26,15 @@ function spotifyFailure(json) {
     };
 }
 
-
-
-
-// ------------------TOKEN------------------
-function saveIt(tokenToSave) {
-    return {
-        type: types.GET_TOKEN,
-        token: tokenToSave
-    };
-}
-
-export function passToken(token) {
-  return (dispatch) => {
-    dispatch(saveIt(token));
-  };
-}
-
-
-// ------------------PROFILE IMG------------------
-function saveImg(ImgToSave) {
-    return {
-        type: types.GET_PROFILE_IMG,
-        profileImg: ImgToSave
-    };
-}
-
-export function saveImgProfile(profileImg) {
-  return (dispatch) => {
-    dispatch(saveImg(profileImg));
-  };
-}
-
-
 // ------------------CLEAR SEARCH------------------
 export function clearSearch() {
     return {
         type: types.CLEAR_SEARCH,
-        data: []
+        data: {}
     };
 }
 
-
-
 // ------------------------------------
-
-
 
 export function searchSpotify(partUrl, token, query="", type="") {
 
@@ -95,3 +58,39 @@ export function searchSpotify(partUrl, token, query="", type="") {
         .catch((error) => dispatch(spotifyFailure(error)));
     };
 }
+
+
+
+
+
+// ------------------TOKEN------------------
+function saveIt(tokenToSave) {
+    return {
+        type: types.GET_TOKEN,
+        token: tokenToSave
+    };
+}
+
+export function passToken(token) {
+  return (dispatch) => {
+    dispatch(saveIt(token));
+  };
+}
+
+
+// -------------- USER PROFILE ----------------------
+function getProfile(user) {
+    return {
+        type: types.GET_USER_PROFILE,
+        user: user
+    };
+}
+
+export function fetchProfile(userInfo) {
+    return (dispatch) => {
+        dispatch(getProfile(userInfo));
+    };
+}
+
+
+// ------------------------------------
