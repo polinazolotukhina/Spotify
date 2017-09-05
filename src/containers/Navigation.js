@@ -40,10 +40,16 @@ class Navigation extends React.Component{
                                 <Link to="/new-release">New Releases</Link>
                             </li>
                             <li>
-                                <Link to="/playlist">Playlist</Link>
+                                <Link to="/playlist">My Playlist</Link>
                             </li>
                             <li>
-                                <Link to="/login"> <img src={profile.data.images&&profile.data.images[0].url }/> </Link>
+                                <Link to="/login">
+                                <div>
+                                    {
+                                        (profile.data.images)?(<img src={profile.data.images&&profile.data.images[0].url }/>):(<img src='../styles/user.png'/>)
+                                    }
+                                </div>
+                                 </Link>
                             </li>
                         </ul>
                    </div>

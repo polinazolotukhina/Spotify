@@ -10,7 +10,6 @@ export default class ListTrack extends Component {
                         {
                             searchTrack.data.tracks && searchTrack.data.tracks.items.map((item, index) =>
                                 <div key={index} className = "col-md-2 singleItem">
-                                    {item.disc_number}
                                     {
                                         item.artists.map((art, index)=>
                                         <div key={index}>
