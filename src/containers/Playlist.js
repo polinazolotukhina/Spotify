@@ -4,26 +4,27 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import { Button, FormGroup, InputGroup, FormControl, ButtonGroup  } from 'react-bootstrap';
 import * as actions from '../actions/spotifyActions';
-import ListArtist from '../components/ListArtist';
-import ListTrack from '../components/ListTracks';
-import ListAlbum from '../components/ListAlbum';
 import ListPlaylist from '../components/ListPlaylist';
 const queryString = require('query-string');
 import Authorize from '../components/Authorize';
+import MyList from '../components/MyList';
 
 
 class Playlist extends React.Component {
     constructor(props){
         super(props);
     }
+    componentWillMount(){
+        this.props.actions.searchSpotify("users/" + this.props.profile.data.id + "/playlists", this.props.spotify.token)
+    }
     render() {
-        const { actions, spotify } = this.props;
+        const { actions, spotify, profile } = this.props;
         return (
         <div className="row">
-            <div className="col-md-6 col-md-offset-3 text-center">
+            <div className="text-center">
                 {
                     (spotify.token.length>2) ? (
-                    <p>playlist!</p>
+                    <MyList spotify ={spotify}/>
                     ):(<Authorize/>)
                 }
             </div>
@@ -39,16 +40,18 @@ class Playlist extends React.Component {
 Playlist.propTypes = {
     actions: PropTypes.object.isRequired,
     spotify: PropTypes.object.isRequired,
+    profile:PropTypes.object.isRequired,
 
 };
 
 
 function mapStateToProps(state) {
-    const { isLoading, error, spotify } = state;
+    const { isLoading, error, spotify, profile } = state;
     return {
         isLoading,
         error,
-        spotify
+        spotify,
+        profile
     };
 }
 

@@ -36,6 +36,7 @@ export function clearSearch() {
 
 // ------------------------------------
 
+
 export function searchSpotify(partUrl, token, query="", type="") {
 
     const headers = {
