@@ -1,7 +1,11 @@
 export default {
-    user: {},
     spotify: {
         token: '',
+        data: {},
+        isLoading: false,
+        error: false
+    },
+    profile: {
         data: {},
         isLoading: false,
         error: false

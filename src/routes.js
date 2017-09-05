@@ -6,8 +6,11 @@ import HomePage from './containers/HomePage';
 import Search from './containers/Search';
 import NewRelease from './containers/NewRelease';
 import Login from './containers/Login';
+import Playlist from './containers/Playlist';
 import AboutPage from './components/AboutPage';
 import NotFoundPage from './components/NotFoundPage';
+
+
 
 export default (
     <Route path="/" component={App}>
@@ -15,6 +18,7 @@ export default (
         <Route path="search" component={Search}/>
         <Route path="new-release" component={NewRelease}/>
         <Route path="login" component={Login}/>
+        <Route path="playlist" component={Playlist}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );

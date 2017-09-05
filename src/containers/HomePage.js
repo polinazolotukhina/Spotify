@@ -11,9 +11,6 @@ class HomePage extends React.Component{
     constructor(props){
         super(props);
         this.authorize= this.authorize.bind(this);
-
-
-
     }
 
     authorize(){
@@ -21,7 +18,7 @@ class HomePage extends React.Component{
     }
 
     render() {
-        const { actions, spotify, user } = this.props;
+        const { actions, spotify } = this.props;
         console.log("spotify", spotify )
         return (
                     <div className="info">
@@ -55,15 +52,13 @@ class HomePage extends React.Component{
 HomePage.propTypes = {
    actions: PropTypes.object.isRequired,
    spotify: PropTypes.object.isRequired,
-   user: PropTypes.object
 };
 
 
 function mapStateToProps(state) {
-   const { spotify, user } = state;
+   const { spotify } = state;
    return {
        spotify,
-       user
    };
 }
 

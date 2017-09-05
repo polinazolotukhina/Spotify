@@ -78,19 +78,59 @@ export function passToken(token) {
 }
 
 
-// -------------- USER PROFILE ----------------------
-function getProfile(user) {
-    return {
-        type: types.GET_USER_PROFILE,
-        user: user
-    };
-}
 
-export function fetchProfile(userInfo) {
-    return (dispatch) => {
-        dispatch(getProfile(userInfo));
-    };
-}
+//=====================================================
+//=====================================================
+//=====================================================
+ //==!!!!!!!!!!!!========= PROFILE ACTIONS ===========!!!!!!!!!!===
+ //=====================================================
+ //=====================================================
 
 
-// ------------------------------------
+ function profileRequest() {
+     return {
+         type: types.PROFILE_REQUEST,
+         isLoading: true,
+         error: null
+     };
+ }
+
+ function profileSuccess(json) {
+     return{
+         type: types.PROFILE_SUCCESS,
+         data: json,
+         isLoading: false,
+         error: null
+     };
+ }
+
+ function profileFailure(json) {
+     return {
+         type: types.PROFILE_FAILURE,
+         isLoading: false,
+         error: json
+     };
+ }
+
+ export function getProfile(token) {
+
+     const headers = {
+         "Accept": "application/json",
+         "Authorization": "Bearer " + token
+     }
+
+     const url = `https://api.spotify.com/v1/me`;
+
+     return (dispatch) => {
+         dispatch(profileRequest());
+         fetch(url, {
+             headers: headers
+         })
+         .then((response) => {
+             return response;
+         })
+         .then((response) => response.json())
+         .then((items) => dispatch(profileSuccess(items)))
+         .catch((error) => dispatch(profileFailure(error)));
+     };
+ }

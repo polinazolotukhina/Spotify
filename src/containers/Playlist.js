@@ -2,49 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import Authorize from '../components/Authorize';
+import { Button, FormGroup, InputGroup, FormControl, ButtonGroup  } from 'react-bootstrap';
 import * as actions from '../actions/spotifyActions';
-import ListRelease from '../components/ListRelease';
+import ListArtist from '../components/ListArtist';
+import ListTrack from '../components/ListTracks';
+import ListAlbum from '../components/ListAlbum';
+import ListPlaylist from '../components/ListPlaylist';
+const queryString = require('query-string');
+import Authorize from '../components/Authorize';
 
 
-
-
-class NewRelease extends React.Component {
+class Playlist extends React.Component {
     constructor(props){
         super(props);
-
     }
-
-componentWillMount(){
-    this.props.actions.searchSpotify("browse/new-releases", this.props.spotify.token);
-}
-
-
     render() {
         const { actions, spotify } = this.props;
-
         return (
-            <div className="text-center">
+        <div className="row">
+            <div className="col-md-6 col-md-offset-3 text-center">
                 {
-                    (spotify.token.length>2) ?
-                        (
-                            <div className="row">
-                                <h2 >New Releases</h2>
-                                <ListRelease showRelease = {spotify}/>
-                            </div>
-                        ):(
-                            <Authorize/>
-                        )
+                    (spotify.token.length>2) ? (
+                    <p>playlist!</p>
+                    ):(<Authorize/>)
                 }
             </div>
+        </div>
+
+
 
         );
     }
-
 }
 
 
- NewRelease.propTypes = {
+Playlist.propTypes = {
     actions: PropTypes.object.isRequired,
     spotify: PropTypes.object.isRequired,
 
@@ -69,4 +61,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(NewRelease);
+)(Playlist );

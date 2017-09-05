@@ -3,61 +3,37 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import * as actions from '../actions/spotifyActions';
-import { Link } from 'react-router';
-import { Button  } from 'react-bootstrap';
+import Authorize from '../components/Authorize';
 const queryString = require('query-string');
+
 
 
 class Login extends React.Component{
     constructor(props){
         super(props);
-        this.login= this.login.bind(this);
+            this.profileGet= this.profileGet.bind(this);
     }
-    componentWillMount(){
-        const parsed = queryString.parse(location.hash);
-        if ( parsed.access_token) {
-            this.props.actions.passToken(parsed.access_token);
-            // this.props.actions.searchSpotify("me", parsed.access_token);
-
-
-        }
+    profileGet(){
+        this.props.actions.getProfile(this.props.spotify.token)
     }
-    login(){
-        this.props.actions.searchSpotify("me", this.props.spotify.token);
-        this.props.actions.fetchProfile(this.props.spotify.data);
-
-    }
-
     render() {
-        const { actions, spotify, user } = this.props;
-        console.log("spotify", spotify,)
-        console.log("user", user)
-
+        const { actions, spotify, profile } = this.props;
+        console.log('profile', profile)
         return (
                     <div className="info">
                         <div className = "container">
                             <div className="row">
                                 <div className="text-center">
                                     {
-                                        (spotify.token.length > 2 ) ?
+                                        (spotify.token.length>2)?
                                         (
                                             <div>
-                                            <Button bsStyle="info" bsSize="large" onClick={this.login}>Login</Button>
-
-                                                <h2> Hi,{user.user&&user.user.display_name} </h2>
-
-
-
+                                                {
+                                                    (profile.data.display_name)?(<h2> Hi,{profile.data.display_name }</h2>):(<button onClick={this.profileGet}> Login</button>)
+                                                }
 
                                             </div>
-                                        ):(
-                                            <div>
-                                                <h2> LOGIN!!!</h2>
-
-
-                                                <Button bsStyle="info" bsSize="large" onClick={this.authorize}>Authorize</Button>
-                                            </div>
-                                        )
+                                        ):(<Authorize/>)
                                     }
 
                                 </div>
@@ -71,15 +47,15 @@ class Login extends React.Component{
 Login.propTypes = {
    actions: PropTypes.object.isRequired,
    spotify: PropTypes.object.isRequired,
-   user: PropTypes.object
+   profile: PropTypes.object.isRequired,
 };
 
 
 function mapStateToProps(state) {
-   const { spotify, user } = state;
+   const { spotify, profile } = state;
    return {
        spotify,
-       user
+       profile
    };
 }
 
