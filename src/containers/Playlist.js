@@ -24,7 +24,7 @@ class Playlist extends React.Component {
             <div className="text-center">
                 {
                     (spotify.token.length>2) ? (
-                    <MyList spotify ={spotify}/>
+                    (spotify.data.items&&spotify.data.items.length>0)?(<MyList spotify ={spotify}/>):(<h2>Your playlist is empty.</h2>)
                     ):(<Authorize/>)
                 }
             </div>

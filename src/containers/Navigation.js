@@ -42,6 +42,9 @@ class Navigation extends React.Component{
                             <li>
                                 <Link to="/playlist">My Playlist</Link>
                             </li>
+
+                        </ul>
+                        <ul className="nav navbar-right">
                             <li>
                                 <Link to="/login">
                                 <div>

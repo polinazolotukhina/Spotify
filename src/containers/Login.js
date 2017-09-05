@@ -5,6 +5,7 @@ import { bindActionCreators} from 'redux';
 import * as actions from '../actions/spotifyActions';
 import Authorize from '../components/Authorize';
 const queryString = require('query-string');
+import { Button  } from 'react-bootstrap';
 
 
 
@@ -29,7 +30,7 @@ class Login extends React.Component{
                                         (
                                             <div>
                                                 {
-                                                    (profile.data.display_name)?(<h2> Hi,{profile.data.display_name }</h2>):(<button onClick={this.profileGet}> Login</button>)
+                                                    (profile.data.display_name)?(<h2> Hi, {profile.data.display_name }</h2>):(<Button  bsStyle="info" bsSize="large" onClick={this.profileGet}>Login</Button>)
                                                 }
 
                                             </div>
