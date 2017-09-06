@@ -75,6 +75,7 @@ function saveIt(tokenToSave) {
 export function passToken(token) {
   return (dispatch) => {
     dispatch(saveIt(token));
+    dispatch(getProfile(token));
   };
 }
 
@@ -113,8 +114,8 @@ export function passToken(token) {
      };
  }
 
- export function getProfile(token) {
-
+function getProfile(token) {
+    console.log("im pasing the token");
      const headers = {
          "Accept": "application/json",
          "Authorization": "Bearer " + token

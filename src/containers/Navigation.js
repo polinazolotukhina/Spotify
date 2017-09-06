@@ -17,6 +17,9 @@ class Navigation extends React.Component{
             this.props.actions.passToken(parsed.access_token);
         }
     }
+    authorize(){
+        window.location='https://accounts.spotify.com/authorize?client_id=5714be2b46d94626b3eb39ec4ad04556&redirect_uri=http:%2F%2Flocalhost:3000&scope=user-read-private%20user-read-email&response_type=token&state=123';
+    }
     render() {
         const { actions, spotify, profile } = this.props;
         return (
@@ -29,7 +32,7 @@ class Navigation extends React.Component{
                             <span className="icon-bar" />
                             <span className="icon-bar" />
                         </button>
-                        <IndexLink to="/" className="navbar-brand">image</IndexLink>
+
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
@@ -46,13 +49,13 @@ class Navigation extends React.Component{
                         </ul>
                         <ul className="nav navbar-right">
                             <li>
-                                <Link to="/login">
                                 <div>
                                     {
-                                        (profile.data.images)?(<img src={profile.data.images&&profile.data.images[0].url }/>):(<img src='../styles/user.png'/>)
+                                        (profile.data.images)?(<img src={profile.data.images&&profile.data.images[0].url }/>)
+                                        :
+                                        <button onClick={this.authorize}><img src='../styles/user.png' /><p>Click Here to Authorize</p></button>
                                     }
                                 </div>
-                                 </Link>
                             </li>
                         </ul>
                    </div>

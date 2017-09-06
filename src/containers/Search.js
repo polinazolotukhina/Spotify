@@ -35,7 +35,6 @@ class Search extends React.Component {
     }
     render() {
         const { actions, spotify } = this.props;
-        console.log("spotify lalala", spotify)
         return (
         <div className="row">
                 {
@@ -48,7 +47,7 @@ class Search extends React.Component {
                                   <Button data-filter ="track" onClick={this.handleKeyWord}>Track</Button>
                                   <Button data-filter ="playlist" onClick={this.handleKeyWord}>Playlist</Button>
                             </ButtonGroup>
-                            <h4> Search by {this.state.keyWord}</h4>
+                            <h2> Search by <b>{this.state.keyWord}</b></h2>
                             <FormGroup>
                                 <InputGroup>
                                     <InputGroup.Button>

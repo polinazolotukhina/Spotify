@@ -14,12 +14,13 @@ class HomePage extends React.Component{
     }
 
     authorize(){
-        window.location='https://accounts.spotify.com/authorize?client_id=5714be2b46d94626b3eb39ec4ad04556&redirect_uri=http:%2F%2Flocalhost:3000%2Flogin&scope=user-read-private%20user-read-email&response_type=token&state=123';
+        window.location='https://accounts.spotify.com/authorize?client_id=5714be2b46d94626b3eb39ec4ad04556&redirect_uri=http:%2F%2Flocalhost:3000&scope=user-read-private%20user-read-email&response_type=token&state=123';
+        // window.location='https://accounts.spotify.com/authorize?client_id=5714be2b46d94626b3eb39ec4ad04556&redirect_uri=http:%2F%2Flocalhost:3000%2Flogin&scope=user-read-private%20user-read-email&response_type=token&state=123';
     }
 
     render() {
-        const { actions, spotify } = this.props;
-        console.log("spotify", spotify )
+        const { actions, spotify, profile } = this.props;
+        console.log("spotify", spotify,  )
         return (
                     <div className="info">
                         <div className = "container">
@@ -29,9 +30,8 @@ class HomePage extends React.Component{
                                         (spotify.token.length > 2 ) ?
                                         (
                                             <div>
-                                                <h2> Hi, </h2>
-                                                id:
-                                                <img src = ""/>
+                                                <h2> Hi, {profile.data.display_name } </h2>
+                                                <img src = {profile.data.images&&profile.data.images[0].url }/>
                                             </div>
                                         ):(
                                             <div>
@@ -52,13 +52,14 @@ class HomePage extends React.Component{
 HomePage.propTypes = {
    actions: PropTypes.object.isRequired,
    spotify: PropTypes.object.isRequired,
+   profile: PropTypes.object.isRequired,
 };
 
 
 function mapStateToProps(state) {
-   const { spotify } = state;
+   const { spotify,  profile } = state;
    return {
-       spotify,
+       spotify, profile
    };
 }
 

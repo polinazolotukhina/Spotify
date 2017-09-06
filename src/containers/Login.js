@@ -12,10 +12,6 @@ import { Button  } from 'react-bootstrap';
 class Login extends React.Component{
     constructor(props){
         super(props);
-            this.profileGet= this.profileGet.bind(this);
-    }
-    profileGet(){
-        this.props.actions.getProfile(this.props.spotify.token)
     }
     render() {
         const { actions, spotify, profile } = this.props;
@@ -26,15 +22,7 @@ class Login extends React.Component{
                             <div className="row">
                                 <div className="text-center">
                                     {
-                                        (spotify.token.length>2)?
-                                        (
-                                            <div>
-                                                {
-                                                    (profile.data.display_name)?(<h2> Hi, {profile.data.display_name }</h2>):(<Button  bsStyle="info" bsSize="large" onClick={this.profileGet}>Login</Button>)
-                                                }
-
-                                            </div>
-                                        ):(<Authorize/>)
+                                        (spotify.token.length>2)?(<h2> Hi, {profile.data.display_name }</h2>):(<Authorize/>)
                                     }
 
                                 </div>
